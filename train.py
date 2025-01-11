@@ -310,6 +310,9 @@ elif args.model == 'CONAD': # 2022
                   batch_size=batch_size,
                   eval_mode=args.eval_mode)
 elif args.model =='GADNR': # 2024
+    if args.dataset in ['acm','pubmed'] and nhidden>=128 and num_layers >=2:
+        args.batch_size = 9192
+        batch_size = args.batch_size
     model = GADNR(nhidden,num_layers,dropout=dropout,
                   weight_decay=weight_decay, 
                   gpu=gpu, 
